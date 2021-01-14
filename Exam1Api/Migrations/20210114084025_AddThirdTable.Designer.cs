@@ -53,7 +53,7 @@ namespace Exam1Api.Migrations
                     b.ToTable("AuthorWebcomics");
                 });
 
-            modelBuilder.Entity("Exam1Api.Models.SocialLink", b =>
+            modelBuilder.Entity("Exam1Api.Models.SocialLinks", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -69,7 +69,7 @@ namespace Exam1Api.Migrations
 
                     b.HasIndex("AuthorId");
 
-                    b.ToTable("SocialLink");
+                    b.ToTable("SocialLinks");
                 });
 
             modelBuilder.Entity("Exam1Api.Models.Webcomic", b =>

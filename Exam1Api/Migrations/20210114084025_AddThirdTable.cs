@@ -7,7 +7,7 @@ namespace Exam1Api.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "SocialLink",
+                name: "SocialLinks",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -28,14 +28,14 @@ namespace Exam1Api.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_SocialLink_AuthorId",
-                table: "SocialLink",
+                table: "SocialLinks",
                 column: "AuthorId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "SocialLink");
+                name: "SocialLinks");
         }
     }
 }
