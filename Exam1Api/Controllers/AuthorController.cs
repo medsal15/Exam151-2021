@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Exam1Api.Models;
 using Exam1Api.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -6,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Exam1Api.Controllers
 {
     [ApiController]
-    class AuthorController : ControllerBase
+    public class AuthorController : ControllerBase
     {
         private readonly IAuthorService service;
 
@@ -16,9 +17,9 @@ namespace Exam1Api.Controllers
         }
 
         [HttpGet("authors")]
-        public IActionResult GetAll([FromQuery]string name)
+        public IActionResult GetAll([FromQuery]string name = "")
         {
-            return Ok(service.GetAll(name));
+            return Ok(service.GetAll(name).Select(a => a.ToResult()));
         }
 
         [HttpGet("authors/{id}")]
@@ -56,7 +57,7 @@ namespace Exam1Api.Controllers
         {
             try
             {
-                return Ok(service.Create(author));
+                return Ok(service.Create(author).ToResult());
             }
             catch (ArgumentException e)
             {
@@ -71,7 +72,7 @@ namespace Exam1Api.Controllers
             return NoContent();
         }
 
-        [HttpPost("authors/link/{author}/{webcomic}")]
+        [HttpGet("authors/link/{author}/{webcomic}")]
         public IActionResult Link([FromRoute]int author, [FromRoute]int webcomic)
         {
             try
@@ -85,7 +86,7 @@ namespace Exam1Api.Controllers
             }
         }
 
-        [HttpPost("authors/unlink/{author}/{webcomic}")]
+        [HttpGet("authors/unlink/{author}/{webcomic}")]
         public IActionResult Unlink([FromRoute]int author, [FromRoute]int webcomic)
         {
             try

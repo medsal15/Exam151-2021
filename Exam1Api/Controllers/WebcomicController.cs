@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Linq;
 using Exam1Api.Models;
 using Exam1Api.Services;
 using Microsoft.AspNetCore.Http;
@@ -8,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Exam1Api.Controllers
 {
     [ApiController]
-    class WebcomicController : ControllerBase
+    public class WebcomicController : ControllerBase
     {
         private readonly IWebcomicService service;
 
@@ -18,9 +19,9 @@ namespace Exam1Api.Controllers
         }
 
         [HttpGet("webcomics")]
-        public IActionResult GetAll([FromQuery]string name)
+        public IActionResult GetAll([FromQuery]string name = "")
         {
-            return Ok(service.GetAll(name));
+            return Ok(service.GetAll(name).Select(w => w.ToResult()));
         }
 
         [HttpGet("webcomics/{id}")]
@@ -37,11 +38,11 @@ namespace Exam1Api.Controllers
         }
 
         [HttpPost("webcomics/{id}")]
-        public IActionResult Update([FromRoute]int id, [FromBody]WebcomicInput author)
+        public IActionResult Update([FromRoute]int id, [FromBody]WebcomicInput webcomic)
         {
             try
             {
-                return Ok(service.Update(id, author).ToResult());
+                return Ok(service.Update(id, webcomic).ToResult());
             }
             catch (NullReferenceException e)
             {
@@ -54,11 +55,11 @@ namespace Exam1Api.Controllers
         }
 
         [HttpPost("webcomics")]
-        public IActionResult Add([FromBody]WebcomicInput author)
+        public IActionResult Add([FromBody]WebcomicInput webcomic)
         {
             try
             {
-                return Ok(service.Create(author));
+                return Ok(service.Create(webcomic).ToResult());
             }
             catch (ArgumentException e)
             {
@@ -73,7 +74,7 @@ namespace Exam1Api.Controllers
             return NoContent();
         }
 
-        [HttpPost("webcomics/link/{webcomic}/{author}")]
+        [HttpGet("webcomics/link/{webcomic}/{author}")]
         public IActionResult Link([FromRoute]int webcomic, [FromRoute]int author)
         {
             try
@@ -87,7 +88,7 @@ namespace Exam1Api.Controllers
             }
         }
 
-        [HttpPost("webcomics/unlink/{webcomic}/{author}")]
+        [HttpGet("webcomics/unlink/{webcomic}/{author}")]
         public IActionResult Unlink([FromRoute]int webcomic, [FromRoute]int author)
         {
             try
@@ -105,7 +106,7 @@ namespace Exam1Api.Controllers
         public IActionResult GetImage([FromRoute]int id)
         {
             var webcomic = service.GetSingle(id);
-            if (webcomic == null)
+            if (webcomic == null || webcomic.Picture == null)
             {
                 return NotFound();
             }
@@ -118,7 +119,11 @@ namespace Exam1Api.Controllers
             var webcomic = service.GetSingle(id);
             if (webcomic == null)
             {
-                return BadRequest("The webcomic does not exist");
+                return NotFound("The webcomic does not exist");
+            }
+            if (file.Length > 0 && !file.ContentType.Contains("image"))
+            {
+                return BadRequest("The picture is not an image");
             }
 
             var ms = new MemoryStream();

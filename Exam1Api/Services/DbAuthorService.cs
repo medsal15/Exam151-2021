@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Exam1Api.Data;
 using Exam1Api.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Exam1Api.Services
 {
@@ -51,7 +52,7 @@ namespace Exam1Api.Services
 
                 new_author = Create(new_author);
 
-                if (author?.Webcomics.Length > 0)
+                if (author.Webcomics != null)
                 {
                     foreach (int id in author.Webcomics)
                     {
@@ -69,14 +70,16 @@ namespace Exam1Api.Services
 
         public List<Author> GetAll(string name = "")
         {
-            return context.Authors.Where(a => a.Name.Contains(name)).ToList();
+            return context.Authors.Include(a => a.AuthorWebcomics)
+                .Where(a => a.Name.Contains(name) || name.Length == 0).ToList();
         }
 
         public Author GetSingle(int id)
         {
             if (context.Authors.Any(a => a.Id == id))
             {
-                return context.Authors.First(a => a.Id == id);
+                return context.Authors.Include(a => a.AuthorWebcomics)
+                    .First(a => a.Id == id);
             }
             else
             {
@@ -130,6 +133,11 @@ namespace Exam1Api.Services
             var author = GetSingle(id);
             if (author != null)
             {
+                var links = context.AuthorWebcomics.Where(link => link.AuthorId == id);
+                foreach (var link in links) {
+                    context.AuthorWebcomics.Remove(link);
+                }
+
                 context.Authors.Remove(author);
                 context.SaveChanges();
             }

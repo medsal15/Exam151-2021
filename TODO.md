@@ -1,3 +1,5 @@
 # TODO LIST #
 
-- Add tests/Make front
+- WHY IS SWAGGER NOT WORKING
+- Make front
+- Add tests

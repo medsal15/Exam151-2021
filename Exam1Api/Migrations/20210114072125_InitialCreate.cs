@@ -28,7 +28,8 @@ namespace Exam1Api.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(nullable: true),
                     State = table.Column<int>(nullable: false),
-                    Picture = table.Column<byte[]>(nullable: true)
+                    Picture = table.Column<byte[]>(nullable: true),
+                    Url = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -36,7 +37,7 @@ namespace Exam1Api.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AuthorWebcomic",
+                name: "AuthorWebcomics",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -46,15 +47,15 @@ namespace Exam1Api.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AuthorWebcomic", x => x.Id);
+                    table.PrimaryKey("PK_AuthorWebcomics", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_AuthorWebcomic_Authors_AuthorId",
+                        name: "FK_AuthorWebcomics_Authors_AuthorId",
                         column: x => x.AuthorId,
                         principalTable: "Authors",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_AuthorWebcomic_Webcomics_WebcomicId",
+                        name: "FK_AuthorWebcomics_Webcomics_WebcomicId",
                         column: x => x.WebcomicId,
                         principalTable: "Webcomics",
                         principalColumn: "Id",
@@ -62,20 +63,20 @@ namespace Exam1Api.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_AuthorWebcomic_AuthorId",
-                table: "AuthorWebcomic",
+                name: "IX_AuthorWebcomics_AuthorId",
+                table: "AuthorWebcomics",
                 column: "AuthorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AuthorWebcomic_WebcomicId",
-                table: "AuthorWebcomic",
+                name: "IX_AuthorWebcomics_WebcomicId",
+                table: "AuthorWebcomics",
                 column: "WebcomicId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "AuthorWebcomic");
+                name: "AuthorWebcomics");
 
             migrationBuilder.DropTable(
                 name: "Authors");

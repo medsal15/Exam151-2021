@@ -12,15 +12,25 @@ namespace Exam1Api.Models
         public string Name { get; set; }
         public State State { get; set; }
         public byte[] Picture { get; set; }
+        public string Url { get; set; }
 
         public WebcomicResult ToResult()
         {
-            return new WebcomicResult {
+            var result = new WebcomicResult {
                 Id = this.Id,
-                Authors = this.AuthorWebcomics.Select(a => a.AuthorId).ToArray(),
                 Name = this.Name,
-                State = this.State
+                State = this.State,
+                Picture = this.Picture,
+                Url = this.Url,
+                Authors = new int[]{}
             };
+
+            if (AuthorWebcomics != null)
+            {
+                result.Authors = AuthorWebcomics.Select(a => a.AuthorId).ToArray();
+            }
+
+            return result;
         }
     }
 
@@ -31,12 +41,14 @@ namespace Exam1Api.Models
         [Required]
         public string Name { get; set; }
         public State State { get; set; }
+        public string Url { get; set; }
 
         public Webcomic ToReal()
         {
             return new Webcomic {
                 Name = this.Name,
-                State = this.State
+                State = this.State,
+                Url = this.Url
             };
         }
     }
@@ -47,5 +59,7 @@ namespace Exam1Api.Models
         public int[] Authors { get; set; }
         public string Name { get; set; }
         public State State { get; set; }
+        public byte[] Picture { get; set; }
+        public string Url { get; set; }
     }
 }

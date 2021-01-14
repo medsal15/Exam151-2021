@@ -14,7 +14,7 @@ namespace Exam1Api.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.10");
+                .HasAnnotation("ProductVersion", "3.1.11");
 
             modelBuilder.Entity("Exam1Api.Models.Author", b =>
                 {
@@ -48,7 +48,7 @@ namespace Exam1Api.Migrations
 
                     b.HasIndex("WebcomicId");
 
-                    b.ToTable("AuthorWebcomic");
+                    b.ToTable("AuthorWebcomics");
                 });
 
             modelBuilder.Entity("Exam1Api.Models.Webcomic", b =>
@@ -65,6 +65,9 @@ namespace Exam1Api.Migrations
 
                     b.Property<int>("State")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("Url")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 

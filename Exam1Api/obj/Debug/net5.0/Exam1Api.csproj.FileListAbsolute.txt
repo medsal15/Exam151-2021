@@ -1,3 +1,10 @@
+C:\Users\sames\Documents\Docs\3eme\151\Exam1-151\Exam1Api\obj\Debug\net5.0\Exam1Api.csprojAssemblyReference.cache
+C:\Users\sames\Documents\Docs\3eme\151\Exam1-151\Exam1Api\obj\Debug\net5.0\Exam1Api.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\sames\Documents\Docs\3eme\151\Exam1-151\Exam1Api\obj\Debug\net5.0\Exam1Api.AssemblyInfoInputs.cache
+C:\Users\sames\Documents\Docs\3eme\151\Exam1-151\Exam1Api\obj\Debug\net5.0\Exam1Api.AssemblyInfo.cs
+C:\Users\sames\Documents\Docs\3eme\151\Exam1-151\Exam1Api\obj\Debug\net5.0\Exam1Api.csproj.CoreCompileInputs.cache
+C:\Users\sames\Documents\Docs\3eme\151\Exam1-151\Exam1Api\obj\Debug\net5.0\Exam1Api.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\sames\Documents\Docs\3eme\151\Exam1-151\Exam1Api\obj\Debug\net5.0\Exam1Api.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\sames\Documents\Docs\3eme\151\Exam1-151\Exam1Api\bin\Debug\net5.0\appsettings.Development.json
 C:\Users\sames\Documents\Docs\3eme\151\Exam1-151\Exam1Api\bin\Debug\net5.0\appsettings.json
 C:\Users\sames\Documents\Docs\3eme\151\Exam1-151\Exam1Api\bin\Debug\net5.0\Exam1Api.exe
@@ -45,13 +52,6 @@ C:\Users\sames\Documents\Docs\3eme\151\Exam1-151\Exam1Api\bin\Debug\net5.0\runti
 C:\Users\sames\Documents\Docs\3eme\151\Exam1-151\Exam1Api\bin\Debug\net5.0\runtimes\win-arm64\native\e_sqlite3.dll
 C:\Users\sames\Documents\Docs\3eme\151\Exam1-151\Exam1Api\bin\Debug\net5.0\runtimes\win-x64\native\e_sqlite3.dll
 C:\Users\sames\Documents\Docs\3eme\151\Exam1-151\Exam1Api\bin\Debug\net5.0\runtimes\win-x86\native\e_sqlite3.dll
-C:\Users\sames\Documents\Docs\3eme\151\Exam1-151\Exam1Api\obj\Debug\net5.0\Exam1Api.csprojAssemblyReference.cache
-C:\Users\sames\Documents\Docs\3eme\151\Exam1-151\Exam1Api\obj\Debug\net5.0\Exam1Api.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\sames\Documents\Docs\3eme\151\Exam1-151\Exam1Api\obj\Debug\net5.0\Exam1Api.AssemblyInfoInputs.cache
-C:\Users\sames\Documents\Docs\3eme\151\Exam1-151\Exam1Api\obj\Debug\net5.0\Exam1Api.AssemblyInfo.cs
-C:\Users\sames\Documents\Docs\3eme\151\Exam1-151\Exam1Api\obj\Debug\net5.0\Exam1Api.csproj.CoreCompileInputs.cache
-C:\Users\sames\Documents\Docs\3eme\151\Exam1-151\Exam1Api\obj\Debug\net5.0\Exam1Api.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\sames\Documents\Docs\3eme\151\Exam1-151\Exam1Api\obj\Debug\net5.0\Exam1Api.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\sames\Documents\Docs\3eme\151\Exam1-151\Exam1Api\obj\Debug\net5.0\staticwebassets\Exam1Api.StaticWebAssets.Manifest.cache
 C:\Users\sames\Documents\Docs\3eme\151\Exam1-151\Exam1Api\obj\Debug\net5.0\staticwebassets\Exam1Api.StaticWebAssets.xml
 C:\Users\sames\Documents\Docs\3eme\151\Exam1-151\Exam1Api\obj\Debug\net5.0\scopedcss\bundle\Exam1Api.styles.css
