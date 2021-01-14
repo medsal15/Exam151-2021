@@ -3,14 +3,16 @@ using System;
 using Exam1Api.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Exam1Api.Migrations
 {
     [DbContext(typeof(Exam1ApiDataContext))]
-    partial class Exam1ApiDataContextModelSnapshot : ModelSnapshot
+    [Migration("20210114084025_AddThirdTable")]
+    partial class AddThirdTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

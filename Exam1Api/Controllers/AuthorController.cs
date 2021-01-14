@@ -99,5 +99,37 @@ namespace Exam1Api.Controllers
                 return BadRequest(e.Message);
             }
         }
+
+        [HttpPost("authors/social/{id}")]
+        public IActionResult AddSocial([FromRoute]int id, [FromBody]SocialLinkInput socialLink)
+        {
+            try
+            {
+                service.AddSocialLink(id, socialLink);
+                return Ok();
+            }
+            catch (ArgumentNullException e)
+            {
+                return BadRequest(e.Message);
+            }
+            catch (NullReferenceException e)
+            {
+                return NotFound(e.Message);
+            }
+        }
+
+        [HttpDelete("authors/social/{socialLink}")]
+        public IActionResult RemoveSocial([FromRoute]int socialLink)
+        {
+            try
+            {
+                service.RemoveSocialLink(socialLink);
+                return NoContent();
+            }
+            catch (ArgumentException e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
     }
 }

@@ -9,17 +9,24 @@ namespace Exam1Api.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public List<AuthorWebcomic> AuthorWebcomics { get; set; }
+        public List<SocialLink> SocialLinks { get; set; }
 
         public AuthorResult ToResult()
         {
             var result = new AuthorResult {
                 Id = this.Id,
                 Name = this.Name,
-                Webcomics = new int[] {}
+                Webcomics = new int[] {},
+                SocialLinks = new SocialLinkResult[] {},
             };
 
-            if (AuthorWebcomics?.Count > 0) {
+            if (AuthorWebcomics != null)
+            {
                 result.Webcomics = AuthorWebcomics.Select(w => w.WebcomicId).ToArray();
+            }
+            if (SocialLinks != null)
+            {
+                result.SocialLinks = SocialLinks.Select(l => l.ToResult()).ToArray();
             }
 
             return result;
@@ -46,5 +53,6 @@ namespace Exam1Api.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public int[] Webcomics { get; set; }
+        public SocialLinkResult[] SocialLinks { get; set; }
     }
 }

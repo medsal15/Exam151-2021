@@ -73,5 +73,28 @@ namespace Exam1Api.Services
         /// <param name="author">Id of the author to unlink</param>
         /// <param name="webcomic">Id of the webcomic to unlink</param>
         public void RemoveWebcomic(int author, int webcomic);
+
+        /// <summary>
+        /// Adds a social link to an author
+        /// </summary>
+        /// <param name="author">ID of the author to link</param>
+        /// <param name="socialLink">Social link to add</param>
+        /// <returns></returns>
+        public void AddSocialLink(int author, SocialLink socialLink);
+
+        /// <summary>
+        /// Adds a social link to an author
+        /// </summary>
+        /// <param name="author">ID of the author to link</param>
+        /// <param name="socialLink">Social link to add</param>
+        /// <returns></returns>
+        public void AddSocialLink(int author, SocialLinkInput socialLink);
+
+        /// <summary>
+        /// Removes a social link from an author
+        /// </summary>
+        /// <param name="socialLink">ID of the social link to remove</param>
+        /// <returns></returns>
+        public void RemoveSocialLink(int socialLink);
     }
 }

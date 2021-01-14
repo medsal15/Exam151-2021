@@ -71,6 +71,7 @@ namespace Exam1Api.Services
         public List<Author> GetAll(string name = "")
         {
             return context.Authors.Include(a => a.AuthorWebcomics)
+                .Include(a => a.SocialLinks)
                 .Where(a => a.Name.Contains(name) || name.Length == 0).ToList();
         }
 
@@ -79,6 +80,7 @@ namespace Exam1Api.Services
             if (context.Authors.Any(a => a.Id == id))
             {
                 return context.Authors.Include(a => a.AuthorWebcomics)
+                    .Include(a => a.SocialLinks)
                     .First(a => a.Id == id);
             }
             else
@@ -186,6 +188,54 @@ namespace Exam1Api.Services
                 context.AuthorWebcomics.Remove(link);
                 context.SaveChanges();
             }
+        }
+
+        public void AddSocialLink(int author, SocialLink socialLink)
+        {
+            if (socialLink == null)
+            {
+                throw new ArgumentNullException();
+            }
+            if (GetSingle(author) == null)
+            {
+                throw new NullReferenceException();
+            }
+
+            socialLink.AuthorId = author;
+            context.SocialLinks.Add(socialLink);
+            context.SaveChanges();
+        }
+
+        public void AddSocialLink(int author, SocialLinkInput socialLink)
+        {
+            try
+            {
+                var new_socialLink = socialLink.ToReal();
+                new_socialLink.Id = 1;
+
+                if (context.SocialLinks.Count() > 0)
+                {
+                    new_socialLink.Id = context.SocialLinks.Select(l => l.Id).Max() + 1;
+                }
+
+                AddSocialLink(author, new_socialLink);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public void RemoveSocialLink(int socialLink)
+        {
+            if (!context.SocialLinks.Any(s => s.Id == socialLink))
+            {
+                throw new ArgumentException();
+            }
+
+            var old = context.SocialLinks.First(s => s.Id == socialLink);
+            context.SocialLinks.Remove(old);
+            context.SaveChanges();
         }
     }
 }
