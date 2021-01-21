@@ -5,11 +5,6 @@ namespace Exam1Api.Services
 {
     public interface IWebcomicService
     {
-        /// <summary>
-        /// Current instance of the service
-        /// </summary>
-        public static IWebcomicService instance;
-
         public Webcomic Create(Webcomic webcomic);
 
         public Webcomic Create(WebcomicInput webcomic);

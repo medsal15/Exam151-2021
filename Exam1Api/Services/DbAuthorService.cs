@@ -14,7 +14,6 @@ namespace Exam1Api.Services
         public DbAuthorService(Exam1ApiDataContext context)
         {
             this.context = context;
-            IAuthorService.instance = this;
         }
 
         public Author Create(Author author)
@@ -52,9 +51,9 @@ namespace Exam1Api.Services
 
                 new_author = Create(new_author);
 
-                if (author.Webcomics != null)
+                if (author.webcomics != null)
                 {
-                    foreach (int id in author.Webcomics)
+                    foreach (int id in author.webcomics)
                     {
                         AddWebcomic(new_author.Id, id);
                     }

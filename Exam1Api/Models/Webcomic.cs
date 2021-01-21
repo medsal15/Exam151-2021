@@ -17,17 +17,17 @@ namespace Exam1Api.Models
         public WebcomicResult ToResult()
         {
             var result = new WebcomicResult {
-                Id = this.Id,
-                Name = this.Name,
-                State = this.State,
-                Picture = this.Picture,
-                Url = this.Url,
-                Authors = new int[]{}
+                id = this.Id,
+                name = this.Name,
+                state = this.State,
+                picture = this.Picture,
+                url = this.Url,
+                authors = new int[]{}
             };
 
             if (AuthorWebcomics != null)
             {
-                result.Authors = AuthorWebcomics.Select(a => a.AuthorId).ToArray();
+                result.authors = AuthorWebcomics.Select(a => a.AuthorId).ToArray();
             }
 
             return result;
@@ -36,30 +36,30 @@ namespace Exam1Api.Models
 
     public class WebcomicInput
     {
-        public int[] Authors { get; set; }
+        public int[] authors { get; set; }
         [StringLength(60)]
         [Required]
-        public string Name { get; set; }
-        public State State { get; set; }
-        public string Url { get; set; }
+        public string name { get; set; }
+        public State state { get; set; }
+        public string url { get; set; }
 
         public Webcomic ToReal()
         {
             return new Webcomic {
-                Name = this.Name,
-                State = this.State,
-                Url = this.Url
+                Name = this.name,
+                State = this.state,
+                Url = this.url
             };
         }
     }
 
     public class WebcomicResult
     {
-        public int Id { get; set; }
-        public int[] Authors { get; set; }
-        public string Name { get; set; }
-        public State State { get; set; }
-        public byte[] Picture { get; set; }
-        public string Url { get; set; }
+        public int id { get; set; }
+        public int[] authors { get; set; }
+        public string name { get; set; }
+        public State state { get; set; }
+        public byte[] picture { get; set; }
+        public string url { get; set; }
     }
 }

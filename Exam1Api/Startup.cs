@@ -33,6 +33,7 @@ namespace Exam1Api
 
             services.AddTransient<IAuthorService, DbAuthorService>();
             services.AddTransient<IWebcomicService, DbWebcomicService>();
+            services.AddTransient<ISocialLinkService, DbSocialLinkService>();
 
             services.AddCors(options => {
                 options.AddPolicy("CorsPolicy", builder => builder

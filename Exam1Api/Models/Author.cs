@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
+
 namespace Exam1Api.Models
 {
     public class Author
@@ -14,19 +15,19 @@ namespace Exam1Api.Models
         public AuthorResult ToResult()
         {
             var result = new AuthorResult {
-                Id = this.Id,
-                Name = this.Name,
-                Webcomics = new int[] {},
-                SocialLinks = new SocialLinkResult[] {},
+                id = this.Id,
+                name = this.Name,
+                webcomics = new int[] {},
+                socialLinks = new SocialLinkResult[] {},
             };
 
             if (AuthorWebcomics != null)
             {
-                result.Webcomics = AuthorWebcomics.Select(w => w.WebcomicId).ToArray();
+                result.webcomics = AuthorWebcomics.Select(w => w.WebcomicId).ToArray();
             }
             if (SocialLinks != null)
             {
-                result.SocialLinks = SocialLinks.Select(l => l.ToResult()).ToArray();
+                result.socialLinks = SocialLinks.Select(l => l.ToResult()).ToArray();
             }
 
             return result;
@@ -37,22 +38,22 @@ namespace Exam1Api.Models
     {
         [StringLength(60)]
         [Required]
-        public string Name { get; set; }
-        public int[] Webcomics { get; set; }
+        public string name { get; set; }
+        public int[] webcomics { get; set; }
 
         public Author ToReal()
         {
             return new Author{
-                Name = this.Name
+                Name = this.name
             };
         }
     }
 
     public class AuthorResult
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public int[] Webcomics { get; set; }
-        public SocialLinkResult[] SocialLinks { get; set; }
+        public int id { get; set; }
+        public string name { get; set; }
+        public int[] webcomics { get; set; }
+        public SocialLinkResult[] socialLinks { get; set; }
     }
 }

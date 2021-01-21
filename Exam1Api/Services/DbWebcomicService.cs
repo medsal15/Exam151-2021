@@ -14,7 +14,6 @@ namespace Exam1Api.Services
         public DbWebcomicService(Exam1ApiDataContext context)
         {
             this.context = context;
-            IWebcomicService.instance = this;
         }
 
         public Webcomic Create(Webcomic webcomic)
@@ -52,9 +51,9 @@ namespace Exam1Api.Services
 
                 new_webcomic = Create(new_webcomic);
 
-                if (webcomic.Authors != null)
+                if (webcomic.authors != null)
                 {
-                    foreach (int id in webcomic.Authors)
+                    foreach (int id in webcomic.authors)
                     {
                         AddAuthor(new_webcomic.Id, id);
                     }
@@ -71,7 +70,7 @@ namespace Exam1Api.Services
         public List<Webcomic> GetAll(string name = "")
         {
             return context.Webcomics.Include(a => a.AuthorWebcomics)
-                .Where(w => w.Name.Contains(name) || name.Length == 0).ToList();
+                .Where(w => w.Name.Contains(name) || name == null).ToList();
         }
 
         public Webcomic GetSingle(int id)

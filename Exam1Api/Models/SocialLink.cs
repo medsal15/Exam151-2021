@@ -14,9 +14,9 @@ namespace Exam1Api.Models
         public SocialLinkResult ToResult()
         {
             return new SocialLinkResult {
-                Id = this.Id,
-                Url = this.Url,
-                AuthorId = this.AuthorId
+                id = Id,
+                url = Url,
+                authorId = AuthorId
             };
         }
     }
@@ -25,19 +25,22 @@ namespace Exam1Api.Models
     {
         [Required]
         [StringLength(100)]
-        public string Url { get; set; }
+        public string url { get; set; }
+        [Required]
+        public int authorId { get; set; }
         public SocialLink ToReal()
         {
             return new SocialLink {
-                Url = this.Url
+                Url = url,
+                AuthorId = authorId
             };
         }
     }
 
     public class SocialLinkResult
     {
-        public int Id { get; set; }
-        public string Url { get; set; }
-        public int AuthorId { get; set; }
+        public int id { get; set; }
+        public string url { get; set; }
+        public int authorId { get; set; }
     }
 }
