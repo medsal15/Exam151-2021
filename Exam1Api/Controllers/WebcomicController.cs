@@ -129,7 +129,7 @@ namespace Exam1Api.Controllers
             var ms = new MemoryStream();
             file.CopyTo(ms);
             service.SetImage(id, ms.ToArray());
-            return Ok(webcomic);
+            return Ok(webcomic.ToResult());
         }
     }
 }

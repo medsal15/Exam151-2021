@@ -1,4 +1,3 @@
 # TODO LIST #
 
-- Make front
-- Add tests
+- Fix tests

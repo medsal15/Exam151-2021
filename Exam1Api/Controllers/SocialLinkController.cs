@@ -25,7 +25,12 @@ namespace Exam1Api.Controllers
         [HttpGet("sociallinks/{id}")]
         public IActionResult GetSingle([FromRoute]int id)
         {
-            return Ok(service.GetSingle(id).ToResult());
+            var link = service.GetSingle(id);
+            if (link != null)
+            {
+                return Ok(link.ToResult());
+            }
+            return NotFound();
         }
 
         [HttpPost("sociallinks/{id}")]

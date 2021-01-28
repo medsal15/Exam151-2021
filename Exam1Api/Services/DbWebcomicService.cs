@@ -109,6 +109,10 @@ namespace Exam1Api.Services
                 throw new NullReferenceException();
             }
 
+            if (webcomic.Url != null)
+            {
+                old.Url = webcomic.Url;
+            }
             old.Name = webcomic.Name;
             old.State = webcomic.State;
 
