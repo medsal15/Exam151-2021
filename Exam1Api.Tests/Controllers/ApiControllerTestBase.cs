@@ -56,27 +56,27 @@ namespace Exam1Api.Tests.Controllers
         private static void ResetInMemoryDatabase(Exam1ApiDataContext db)
         {
             // Remove existing data
-            db.Remove(db.AuthorWebcomics);
-            db.Remove(db.Webcomics);
-            db.Remove(db.SocialLinks);
-            db.Remove(db.Authors);
+            db.Webcomics.RemoveRange(db.Webcomics.ToArray());
+            db.Authors.RemoveRange(db.Authors.ToArray());
+            db.AuthorWebcomics.RemoveRange(db.AuthorWebcomics.ToArray());
+            db.SocialLinks.RemoveRange(db.SocialLinks.ToArray());
             db.SaveChanges();
 
             // Add dummy data
-            db.AddRange(new List<Webcomic> {
+            db.Webcomics.AddRange(new List<Webcomic> {
                 new Webcomic { Id = 1, Name = "Homestuck", State = State.Finished, Url = "http://www.homestuck.com" },
                 new Webcomic { Id = 2, Name = "Fortuna", State = State.Hiatus, Url = "http://cosmosdex.com" },
                 new Webcomic { Id = 3, Name = "Inverted Fate", State = State.Finished, Url = "http://invertedfate.com" },
             });
-            db.AddRange(new List<Author> {
+            db.Authors.AddRange(new List<Author> {
                 new Author { Id = 1, Name = "Andrew Hussie" },
                 new Author { Id = 2, Name = "o" },
             });
-            db.AddRange(new List<AuthorWebcomic> {
+            db.AuthorWebcomics.AddRange(new List<AuthorWebcomic> {
                 new AuthorWebcomic { Id = 1, AuthorId = 1, WebcomicId = 1 },
                 new AuthorWebcomic { Id = 2, AuthorId = 1, WebcomicId = 2 },
             });
-            db.AddRange(new List<SocialLink> {
+            db.SocialLinks.AddRange(new List<SocialLink> {
                 new SocialLink { Id = 1, Url = "https://twitter.com/andrewhussie", AuthorId = 1 },
             });
             db.SaveChanges();

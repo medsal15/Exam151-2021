@@ -121,7 +121,7 @@ namespace Exam1Api.Controllers
             {
                 return NotFound("The webcomic does not exist");
             }
-            if (file.Length > 0 && !file.ContentType.Contains("image"))
+            if (file.Length == 0)
             {
                 return BadRequest("The picture is not an image");
             }

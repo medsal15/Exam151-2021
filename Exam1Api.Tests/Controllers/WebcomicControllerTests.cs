@@ -89,7 +89,7 @@ namespace Exam1Api.Tests.Controllers
             var response = await DeleteAsync($"/webcomics/{id}");
 
             // Assert
-            Assert.AreEqual(Microsoft.AspNetCore.Http.StatusCodes.Status204NoContent, response);
+            Assert.AreEqual(Microsoft.AspNetCore.Http.StatusCodes.Status204NoContent, (int)response.StatusCode);
         }
 
         [TestMethod, TestCategory("webcomics")]
@@ -101,7 +101,7 @@ namespace Exam1Api.Tests.Controllers
             var response = await GetAsync($"/webcomics/{id}");
 
             // Assert
-            Assert.AreEqual(Microsoft.AspNetCore.Http.StatusCodes.Status404NotFound, response);
+            Assert.AreEqual(Microsoft.AspNetCore.Http.StatusCodes.Status404NotFound, (int)response.StatusCode);
         }
 
         [TestMethod, TestCategory("webcomics")]
@@ -112,7 +112,7 @@ namespace Exam1Api.Tests.Controllers
             var response = await GetAsync($"/webcomics/link/{webcomic}/{author}");
 
             // Assert
-            Assert.AreEqual(Microsoft.AspNetCore.Http.StatusCodes.Status204NoContent, response);
+            Assert.AreEqual(Microsoft.AspNetCore.Http.StatusCodes.Status204NoContent, (int)response.StatusCode);
 
             var comic = await GetAsync<WebcomicResult>($"/webcomics/{webcomic}");
             Assert.IsTrue(comic.authors.Any(a => a == author));
@@ -127,7 +127,7 @@ namespace Exam1Api.Tests.Controllers
             var comic = await GetAsync<WebcomicResult>($"/webcomics/{webcomic}");
 
             // Assert
-            Assert.AreEqual(Microsoft.AspNetCore.Http.StatusCodes.Status204NoContent, response);
+            Assert.AreEqual(Microsoft.AspNetCore.Http.StatusCodes.Status204NoContent, (int)response.StatusCode);
             Assert.IsFalse(comic.authors.Any(a => a == author));
         }
 
@@ -142,6 +142,7 @@ namespace Exam1Api.Tests.Controllers
 
             // Assert
             var webcomic = await GetAsync<WebcomicResult>($"/webcomics/{1}");
+            Assert.IsNotNull(webcomic.picture);
             Assert.IsTrue(file.SequenceEqual(webcomic.picture));
         }
     }
